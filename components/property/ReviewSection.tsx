@@ -1,16 +1,25 @@
 import api from "@/utils/axios";
+import { useEffect, useState } from "react";
 
-import { useState, useEffect } from "react";
+interface Review {
+  id: string;
+  comment: string;
+}
 
-const ReviewSection = ({ propertyId }) => {
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
+interface ReviewSectionProps {
+  propertyId: string;
+}
+
+const ReviewSection = ({ propertyId }: ReviewSectionProps) => {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-       const response = await api.get(`/properties/${propertyId}/reviews`);
-
+        const response = await api.get(
+          `/properties/${propertyId}/reviews`
+        );
         setReviews(response.data);
       } catch (error) {
         console.error("Error fetching reviews:", error);
