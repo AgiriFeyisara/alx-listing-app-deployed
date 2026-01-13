@@ -20,11 +20,11 @@ export interface PropertyProps{
   rating:number;
   category:string[];
   price:number;
-  offer:{
+  offers:{
     bed:string;
     shower:string;
     occupants:string;
   };
-  images:string;
+  image:string;
   discount:string;
 }
